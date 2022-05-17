@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@model IEnumerable<SteamDBCopyCatMVC.Models.Barang>
 
 <div class="wrapper">
 
@@ -464,28 +465,28 @@
                                 </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body p-0">
-                                <ul class="products-list product-list-in-card pl-2 pr-2">
-                                    <li class="item">
-                                        <asp:Repeater ID="RepeaterRecentAddedItem" runat="server">
-                                            <ItemTemplate>
-                                                <li class="item">
-                                                    <div class="product-img">
-                                                        <asp:ImageButton ID="Image1" runat="server" src='<%#Eval("Images")%>' href='Contact.aspx?ID=<%#Eval("ID") %>' class="img-size-50" alt="Prodcut Image" />
+                                <div class="card-body p-0">
+                                    <ul class="products-list product-list-in-card pl-2 pr-2">
+                                        <li class="item">
+                                            <asp:Repeater ID="RepeaterRecentAddedItem" runat="server">
+                                                <ItemTemplate>
+                                                    <li class="item">
+                                                        <div class="product-img">
+                                                            <asp:ImageButton ID="Image1" runat="server" src='<%#Eval("Images")%>' href='Contact.aspx?ID=<%#Eval("ID") %>' class="img-size-50" alt="Prodcut Image" />
 
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <asp:Label ID="labelname1" class="product-title" runat="server"><%#Eval("Nama_Barang")%></asp:Label>
-                                                        <span class="badge badge-danger float-right">Rp. <%#Eval("Harga")%></span>
-                                                        <span class="product-description"><%#Eval("Tipe_Barang")%></span>
-                                                    </div>
-                                                </li>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    <li>
-                                    </li>
-                                </ul>
-                            </div>
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <asp:Label ID="labelname1" class="product-title" runat="server">@Html.DisplayFor(modelItem => item.Nama_Barang)</asp:Label>
+                                                            <span class="badge badge-danger float-right">Rp. <%#Eval("Harga")%></span>
+                                                            <span class="product-description"><%#Eval("Tipe_Barang")%></span>
+                                                        </div>
+                                                    </li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        <li>
+                                        </li>
+                                    </ul>
+                                </div>
                             <!-- /.card-body -->
                             <div class="card-footer text-center">
                                 <a href="javascript:void(0)" class="uppercase">View All Products</a>
