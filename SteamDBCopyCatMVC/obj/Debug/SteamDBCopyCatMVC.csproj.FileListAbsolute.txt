@@ -126,3 +126,7 @@ C:\Users\DonSt\Source\Repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\ob
 C:\Users\DonSt\Source\Repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\obj\Debug\SteamDBCopyCatMVC.csproj.CopyComplete
 C:\Users\DonSt\Source\Repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\obj\Debug\SteamDBCopyCatMVC.dll
 C:\Users\DonSt\Source\Repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\obj\Debug\SteamDBCopyCatMVC.pdb
+C:\Users\DonSt\source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\EntityFramework.dll
+C:\Users\DonSt\source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\EntityFramework.SqlServer.dll
+C:\Users\DonSt\source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\EntityFramework.xml
+C:\Users\DonSt\source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\EntityFramework.SqlServer.xml

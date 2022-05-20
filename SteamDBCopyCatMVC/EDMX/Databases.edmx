@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SteamDBCopyCatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TabelBarang">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Barang" Type="varchar(max)" />
+          <Property Name="Tipe_Barang" Type="varchar(max)" />
+          <Property Name="Ukuran" Type="varchar(max)" />
+          <Property Name="Harga" Type="int" />
+          <Property Name="Images" Type="varchar(max)" />
+          <Property Name="Tanggal_Muncul" Type="date" />
+          <Property Name="Halal" Type="bit" />
+        </EntityType>
+        <Function Name="NewestItemTop5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ShowListBarang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="SteamDBCopyCatModelStoreContainer">
+          <EntitySet Name="TabelBarang" EntityType="Self.TabelBarang" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SteamDBCopyCatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TabelBarang">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Barang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tipe_Barang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ukuran" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Harga" Type="Int32" />
+          <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tanggal_Muncul" Type="DateTime" Precision="0" />
+          <Property Name="Halal" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="SteamDBCopyCatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TabelBarangs" EntityType="Self.TabelBarang" />
+          <FunctionImport Name="NewestItemTop5" ReturnType="Collection(SteamDBCopyCatModel.NewestItemTop5_Result)" />
+          <FunctionImport Name="ShowListBarang" ReturnType="Collection(SteamDBCopyCatModel.ShowListBarang_Result)" />
+        </EntityContainer>
+        <ComplexType Name="NewestItemTop5_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nama_Barang" Nullable="true" />
+          <Property Type="String" Name="Tipe_Barang" Nullable="true" />
+          <Property Type="String" Name="Ukuran" Nullable="true" />
+          <Property Type="Int32" Name="Harga" Nullable="true" />
+          <Property Type="String" Name="Images" Nullable="true" />
+          <Property Type="DateTime" Name="Tanggal_Muncul" Nullable="true" />
+          <Property Type="Boolean" Name="Halal" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ShowListBarang_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nama_Barang" Nullable="true" />
+          <Property Type="String" Name="Tipe_Barang" Nullable="true" />
+          <Property Type="String" Name="Ukuran" Nullable="true" />
+          <Property Type="Int32" Name="Harga" Nullable="true" />
+          <Property Type="String" Name="Images" Nullable="true" />
+          <Property Type="DateTime" Name="Tanggal_Muncul" Nullable="true" />
+          <Property Type="Boolean" Name="Halal" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SteamDBCopyCatModelStoreContainer" CdmEntityContainer="SteamDBCopyCatEntities">
+          <EntitySetMapping Name="TabelBarangs">
+            <EntityTypeMapping TypeName="SteamDBCopyCatModel.TabelBarang">
+              <MappingFragment StoreEntitySet="TabelBarang">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nama_Barang" ColumnName="Nama_Barang" />
+                <ScalarProperty Name="Tipe_Barang" ColumnName="Tipe_Barang" />
+                <ScalarProperty Name="Ukuran" ColumnName="Ukuran" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Tanggal_Muncul" ColumnName="Tanggal_Muncul" />
+                <ScalarProperty Name="Halal" ColumnName="Halal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="NewestItemTop5" FunctionName="SteamDBCopyCatModel.Store.NewestItemTop5">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SteamDBCopyCatModel.NewestItemTop5_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nama_Barang" ColumnName="Nama_Barang" />
+                <ScalarProperty Name="Tipe_Barang" ColumnName="Tipe_Barang" />
+                <ScalarProperty Name="Ukuran" ColumnName="Ukuran" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Tanggal_Muncul" ColumnName="Tanggal_Muncul" />
+                <ScalarProperty Name="Halal" ColumnName="Halal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ShowListBarang" FunctionName="SteamDBCopyCatModel.Store.ShowListBarang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SteamDBCopyCatModel.ShowListBarang_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nama_Barang" ColumnName="Nama_Barang" />
+                <ScalarProperty Name="Tipe_Barang" ColumnName="Tipe_Barang" />
+                <ScalarProperty Name="Ukuran" ColumnName="Ukuran" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Tanggal_Muncul" ColumnName="Tanggal_Muncul" />
+                <ScalarProperty Name="Halal" ColumnName="Halal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
