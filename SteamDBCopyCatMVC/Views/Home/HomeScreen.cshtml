@@ -340,7 +340,14 @@
                                                     <td>@tabelbarang.Tipe_Barang</td>
                                                     <td>@tabelbarang.Ukuran</td>
                                                     <td>@tabelbarang.Harga</td>
-                                                    <td>@tabelbarang.Halal</td>
+                                                    @if (tabelbarang.Halal == true)
+                                                    {
+                                                        <td>Yes</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Haram tolo</td>
+                                                        }
                                                 </tr>
                                             }
                                             </tbody>

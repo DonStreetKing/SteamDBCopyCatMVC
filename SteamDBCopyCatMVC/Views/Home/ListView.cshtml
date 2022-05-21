@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SteamDBCopyCatMVC.EDMX.TabelBarang>
+
+@{
+    ViewBag.Title = "ListView";
+}
+
+<h2>ListView</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nama_Barang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipe_Barang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ukuran)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Harga)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Images)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tanggal_Muncul)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Halal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nama_Barang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipe_Barang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ukuran)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Harga)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Images)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tanggal_Muncul)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Halal)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -37,5 +37,15 @@ namespace SteamDBCopyCatMVC.Controllers
         {
             return View();
         }
+
+        public ActionResult PartialViewDetailItem()
+        {
+            return View();
+        }
+
+        public ActionResult ListView()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,73 @@
+﻿@model SteamDBCopyCatMVC.EDMX.TabelBarang
+
+@{
+    ViewBag.Title = "PartialViewDetailItem";
+}
+
+<h2>PartialViewDetailItem</h2>
+
+<div>
+    <h4>TabelBarang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nama_Barang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nama_Barang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipe_Barang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipe_Barang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ukuran)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ukuran)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Harga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Harga)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Images)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Images)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tanggal_Muncul)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tanggal_Muncul)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Halal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Halal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
