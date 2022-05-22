@@ -153,6 +153,8 @@
     </Compile>
     <Compile Include="Models\Barang.cs" />
     <Compile Include="Models\BarangDB.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\SignUpModell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +214,7 @@
     <Content Include="Views\Home\PartialViewDetailItem.cshtml" />
     <Content Include="Views\Home\ListView.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
