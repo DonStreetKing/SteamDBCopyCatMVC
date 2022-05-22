@@ -10,6 +10,12 @@ namespace SteamDBCopyCatMVC.Models
 {
     public class BarangDB
     {
+        private SqlConnection con;
+        private void connection()
+        {
+            string constr = ConfigurationManager.ConnectionStrings["DBCS"].ToString();
+            con = new SqlConnection(constr);
+        }
         string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
 
         public List<Barang> ListAll()
@@ -36,6 +42,39 @@ namespace SteamDBCopyCatMVC.Models
                 }
                 return barang;
             }
+        }
+        public List<Barang> ShowDetailItems()
+        {
+            connection();
+            List<Barang> barangDBs = new List<Barang>();
+            SqlCommand com = new SqlCommand("ShowListBarang", con);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            da.Fill(dt);
+            con.Close();
+            //Bind EmpModel generic list using dataRow     
+            foreach (DataRow dr in dt.Rows)
+            {
+                barangDBs.Add(
+
+                new Barang
+                {
+
+                    ID = Convert.ToInt32(dr["ID"]),
+                    Nama_Barang = Convert.ToString(dr["Nama_Barang"]),
+                    Tipe_Barang = Convert.ToString(dr["Tipe_Barang"]),
+                    Ukuran = Convert.ToString(dr["Ukuran"]),
+                    Harga = Convert.ToInt32(dr["Harga"]),
+                    Images = Convert.ToString(dr["Images"]),
+                    Tanggal_Muncul = Convert.ToString(dr["Tanggal_Muncul"]),
+
+                }
+                );
+            }
+            return barangDBs;
         }
     }
 }

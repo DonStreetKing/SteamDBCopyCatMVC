@@ -8,11 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using SteamDBCopyCatMVC.EDMX;
 using SteamDBCopyCatMVC.Models;
+using SteamDBCopyCatMVC.Repository;
 
 namespace SteamDBCopyCatMVC.Controllers
 {
     public class HomeController : Controller
     {
+        public SomeRep _unitOfWork = new SomeRep();
         SteamDBCopyCatEntities dBCopyCatEntities = new SteamDBCopyCatEntities();
         string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         BarangDB barangDB = new BarangDB();
@@ -40,7 +42,8 @@ namespace SteamDBCopyCatMVC.Controllers
 
         public ActionResult PartialViewDetailItem(int ID)
         {
-            return View(from Nama_Barang in dBCopyCatEntities.TabelBarangs.Take(1) select Nama_Barang);
+            BarangDB barangDBs = new BarangDB();
+            return View(_unitOfWork.GetRepositoryInstance<TabelBarang>().GetFirstorDefault(ID));
         }
 
         public ActionResult ListView()
