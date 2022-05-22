@@ -152,6 +152,7 @@
     </Compile>
     <Compile Include="Models\Barang.cs" />
     <Compile Include="Models\BarangDB.cs" />
+    <Compile Include="Models\Model4Chart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BarangRepository.cs" />
     <Compile Include="Repository\GRep.cs" />
@@ -214,6 +215,7 @@
     <Content Include="Views\Home\HomeScreen.cshtml" />
     <Content Include="Views\Home\ListView.cshtml" />
     <Content Include="Views\Home\PartialViewDetailItem.cshtml" />
+    <Content Include="Views\Home\DetailViewItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
