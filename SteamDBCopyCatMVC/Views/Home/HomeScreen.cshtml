@@ -294,7 +294,7 @@
                         <!-- TABLE: LATEST ORDERS -->
                         <div class="card">
                             <div class="card-header border-transparent">
-                                <h3 class="card-title">Latest Orders</h3>
+                                <h3 class="card-title">Sedang Diskon</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -508,7 +508,7 @@
                                                             <img src="@tabelbarang.Images" alt="Product Image" />
                                                         </div>
                                                         <div class="product-info">
-                                                            <asp:Label ID="labelname1" class="product-title" runat="server">@tabelbarang.Nama_Barang</asp:Label>
+                                                            <asp:Label ID="labelname1" class="product-title" runat="server">@Html.ActionLink(@tabelbarang.Nama_Barang, "PartialViewDetailItem", new { ID = tabelbarang.ID })</asp:Label>
                                                             <span class="badge badge-danger float-right">Rp. @tabelbarang.Harga</span>
                                                             <span class="product-description">@tabelbarang.Tipe_Barang</span>
                                                         </div>

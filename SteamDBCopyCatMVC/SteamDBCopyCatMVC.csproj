@@ -119,7 +119,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="EDMX\Akun.cs">
+      <DependentUpon>Databases.tt</DependentUpon>
+    </Compile>
     <Compile Include="EDMX\Databases.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -207,6 +211,7 @@
     <Content Include="Views\Home\HomeScreen.cshtml" />
     <Content Include="Views\Home\PartialViewDetailItem.cshtml" />
     <Content Include="Views\Home\ListView.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

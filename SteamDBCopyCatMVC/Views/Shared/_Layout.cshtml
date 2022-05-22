@@ -189,20 +189,21 @@
     </div>
     <!-- /.sidebar -->
 </aside>
-    <body style="width: 100%;" runat="server" class="dark-mode sidebar-mini layout-footer-fixed sidebar-closed sidebar-collapse layout-fixed layout-navbar-fixed">>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer class="main-footer">
-                <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-                All rights reserved.
-                <div class="float-right d-none d-sm-inline-block">
-                    <b>Version</b> 3.2.0
-                </div>
-            </footer>
-        </div>
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-    </body>
+<body style="width: 100%;" runat="server" class="dark-mode sidebar-mini layout-footer-fixed sidebar-closed sidebar-collapse layout-fixed layout-navbar-fixed">
+    >
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.2.0
+            </div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
 </html>

@@ -28,6 +28,7 @@ namespace SteamDBCopyCatMVC.EDMX
         }
     
         public virtual DbSet<TabelBarang> TabelBarangs { get; set; }
+        public virtual DbSet<Akun> Akuns { get; set; }
     
         public virtual ObjectResult<NewestItemTop5_Result> NewestItemTop5()
         {
@@ -37,6 +38,19 @@ namespace SteamDBCopyCatMVC.EDMX
         public virtual ObjectResult<ShowListBarang_Result> ShowListBarang()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ShowListBarang_Result>("ShowListBarang");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Create_Account(string password, string email)
+        {
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Create_Account", passwordParameter, emailParameter);
         }
     }
 }

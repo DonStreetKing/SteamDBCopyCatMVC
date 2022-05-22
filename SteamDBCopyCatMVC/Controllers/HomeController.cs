@@ -13,12 +13,12 @@ namespace SteamDBCopyCatMVC.Controllers
 {
     public class HomeController : Controller
     {
+        SteamDBCopyCatEntities dBCopyCatEntities = new SteamDBCopyCatEntities();
         string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         BarangDB barangDB = new BarangDB();
 
         public ActionResult HomeScreen()
         {
-            SteamDBCopyCatEntities dBCopyCatEntities = new SteamDBCopyCatEntities();
             return View(from Nama_Barang in dBCopyCatEntities.TabelBarangs.Take(5) select Nama_Barang);
         }
         public JsonResult List()
@@ -38,9 +38,9 @@ namespace SteamDBCopyCatMVC.Controllers
             return View();
         }
 
-        public ActionResult PartialViewDetailItem()
+        public ActionResult PartialViewDetailItem(int ID)
         {
-            return View();
+            return View(from Nama_Barang in dBCopyCatEntities.TabelBarangs.Take(1) select Nama_Barang);
         }
 
         public ActionResult ListView()
