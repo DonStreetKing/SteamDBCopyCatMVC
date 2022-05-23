@@ -52,5 +52,18 @@ namespace SteamDBCopyCatMVC.EDMX
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Create_Account", passwordParameter, emailParameter);
         }
+    
+        public virtual ObjectResult<string> GetLoginInfo(string email, string password)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetLoginInfo", emailParameter, passwordParameter);
+        }
     }
 }

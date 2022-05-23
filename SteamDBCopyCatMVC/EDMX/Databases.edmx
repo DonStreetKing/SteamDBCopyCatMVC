@@ -11,8 +11,14 @@
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nama" Type="varchar(max)" />
-          <Property Name="Email" Type="varchar(max)" />
-          <Property Name="Password" Type="varchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="LoginFailedCount" Type="int" />
+          <Property Name="LoginIPAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerTimeZone" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastAccessDate" Type="datetime" />
+          <Property Name="AccountLocked" Type="bit" />
         </EntityType>
         <EntityType Name="TabelBarang">
           <Key>
@@ -30,6 +36,10 @@
         <Function Name="Create_Account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Password" Type="varchar(max)" Mode="In" />
           <Parameter Name="Email" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetLoginInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Password" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="NewestItemTop5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ShowListBarang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -63,6 +73,10 @@
             <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="Akuns" EntityType="SteamDBCopyCatModel.Akun" />
+          <FunctionImport Name="GetLoginInfo" ReturnType="Collection(String)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="NewestItemTop5_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -90,8 +104,14 @@
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="LoginFailedCount" Type="Int32" />
+          <Property Name="LoginIPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerTimeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastAccessDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountLocked" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -145,6 +165,12 @@
           <EntitySetMapping Name="Akuns">
             <EntityTypeMapping TypeName="IsTypeOf(SteamDBCopyCatModel.Akun)">
               <MappingFragment StoreEntitySet="Akun">
+                <ScalarProperty Name="AccountLocked" ColumnName="AccountLocked" />
+                <ScalarProperty Name="LastAccessDate" ColumnName="LastAccessDate" />
+                <ScalarProperty Name="CustomerTimeZone" ColumnName="CustomerTimeZone" />
+                <ScalarProperty Name="LoginIPAddress" ColumnName="LoginIPAddress" />
+                <ScalarProperty Name="LoginFailedCount" ColumnName="LoginFailedCount" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -152,6 +178,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetLoginInfo" FunctionName="SteamDBCopyCatModel.Store.GetLoginInfo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

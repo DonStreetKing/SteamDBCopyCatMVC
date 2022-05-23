@@ -18,5 +18,11 @@ namespace SteamDBCopyCatMVC.EDMX
         public string Nama { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public Nullable<System.DateTime> LastLogin { get; set; }
+        public Nullable<int> LoginFailedCount { get; set; }
+        public string LoginIPAddress { get; set; }
+        public string CustomerTimeZone { get; set; }
+        public Nullable<System.DateTime> LastAccessDate { get; set; }
+        public Nullable<bool> AccountLocked { get; set; }
     }
 }
