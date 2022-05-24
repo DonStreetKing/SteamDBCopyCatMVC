@@ -41,6 +41,26 @@ namespace SteamDBCopyCatMVC.Controllers
         {
             return View();
         }
+        public ActionResult ListAllItem2(string option, string search, int? pageNumber, string sort)
+        {
+        https://www.c-sharpcorner.com/UploadFile/219d4d/implement-search-paging-and-sort-in-mvc-5/
+            var records = barangDB.Students.AsQueryable();
+            if (option == "Subjects")
+            {
+                records = records.Where(x = > x.Subjects == search || search == null);
+            }
+            else if (option == "Gender")
+            {
+                records = records.Where(x = > x.Gender == search || search == null);
+            }
+            else
+            {
+                records = records.Where(x = > x.Name.StartsWith(search) || search == null);
+            }
+
+
+            return View(from Nama_Barang in dBCopyCatEntities.TabelBarangs.Take(5) select Nama_Barang);
+        }
 
         public ActionResult PartialViewDetailItem(int ID)
         {
