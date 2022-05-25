@@ -79,5 +79,9 @@ namespace SteamDBCopyCatMVC.Controllers
                 return View("RegisterAkun", registerAkun);
             }
         }
+        public ActionResult Welcome()
+        {
+            return View();
+        }
     }
 }
