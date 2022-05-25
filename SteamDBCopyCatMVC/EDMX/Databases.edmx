@@ -32,6 +32,7 @@
           <Property Name="Images" Type="varchar(max)" />
           <Property Name="Tanggal_Muncul" Type="date" />
           <Property Name="Halal" Type="bit" />
+          <Property Name="Stok_Barang" Type="int" />
         </EntityType>
         <Function Name="Create_Account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Password" Type="varchar(max)" Mode="In" />
@@ -63,6 +64,7 @@
           <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Tanggal_Muncul" Type="DateTime" Precision="0" />
           <Property Name="Halal" Type="Boolean" />
+          <Property Name="Stok_Barang" Type="Int32" />
         </EntityType>
         <EntityContainer Name="SteamDBCopyCatEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TabelBarangs" EntityType="Self.TabelBarang" />
@@ -122,6 +124,7 @@
           <EntitySetMapping Name="TabelBarangs">
             <EntityTypeMapping TypeName="SteamDBCopyCatModel.TabelBarang">
               <MappingFragment StoreEntitySet="TabelBarang">
+                <ScalarProperty Name="Stok_Barang" ColumnName="Stok_Barang" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nama_Barang" ColumnName="Nama_Barang" />
                 <ScalarProperty Name="Tipe_Barang" ColumnName="Tipe_Barang" />

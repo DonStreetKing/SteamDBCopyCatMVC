@@ -22,5 +22,6 @@ namespace SteamDBCopyCatMVC.EDMX
         public string Images { get; set; }
         public Nullable<System.DateTime> Tanggal_Muncul { get; set; }
         public Nullable<bool> Halal { get; set; }
+        public Nullable<int> Stok_Barang { get; set; }
     }
 }

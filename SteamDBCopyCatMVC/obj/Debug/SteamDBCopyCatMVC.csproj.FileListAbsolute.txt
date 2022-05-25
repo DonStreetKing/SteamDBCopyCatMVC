@@ -198,3 +198,7 @@ D:\Users\DonSt\Source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bi
 D:\Users\DonSt\Source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\System.Web.Optimization.xml
 D:\Users\DonSt\Source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\Antlr3.Runtime.pdb
 D:\Users\DonSt\Source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\obj\Debug\SteamDBCopyCatMVC.csproj.CopyComplete
+C:\Users\DonSt\source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\PagedList.dll
+C:\Users\DonSt\source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\PagedList.Mvc.dll
+C:\Users\DonSt\source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\PagedList.xml
+C:\Users\DonSt\source\repos\DonStreetKing\SteamDBCopyCatMVC\SteamDBCopyCatMVC\bin\PagedList.Mvc.xml

@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using SteamDBCopyCatMVC.EDMX;
 using SteamDBCopyCatMVC.Models;
 using SteamDBCopyCatMVC.Repository;
+using PagedList;
 
 namespace SteamDBCopyCatMVC.Controllers
 {
@@ -43,23 +44,48 @@ namespace SteamDBCopyCatMVC.Controllers
         }
         public ActionResult ListAllItem2(string option, string search, int? pageNumber, string sort)
         {
-        https://www.c-sharpcorner.com/UploadFile/219d4d/implement-search-paging-and-sort-in-mvc-5/
-            var records = barangDB.Students.AsQueryable();
-            if (option == "Subjects")
+            //if the sort parameter is null or empty then we are initializing the value as descending name  
+            ViewBag.SortByName = string.IsNullOrEmpty(sort) ? "descending Nama_Barang" : "";
+            //if the sort value is gender then we are initializing the value as descending gender  
+            ViewBag.SortByGender = sort == "Tipe_Barang" ? "descending tipe_barang" : "Tipe_Barang";
+
+            //here we are converting the db.Students to AsQueryable so that we can invoke all the extension methods on variable records.  
+            var records = dBCopyCatEntities.TabelBarangs.AsQueryable();
+
+            if (option == "Ukuran")
             {
-                records = records.Where(x = > x.Subjects == search || search == null);
+                records = records.Where(x => x.Ukuran == search || search == null);
             }
-            else if (option == "Gender")
+            else if (option == "Tipe_Barang")
             {
-                records = records.Where(x = > x.Gender == search || search == null);
+                records = records.Where(x => x.Tipe_Barang == search || search == null);
             }
             else
             {
-                records = records.Where(x = > x.Name.StartsWith(search) || search == null);
+                records = records.Where(x => x.Nama_Barang.StartsWith(search) || search == null);
             }
 
+            switch (sort)
+            {
 
-            return View(from Nama_Barang in dBCopyCatEntities.TabelBarangs.Take(5) select Nama_Barang);
+                case "descending name":
+                    records = records.OrderByDescending(x => x.Nama_Barang);
+                    break;
+
+                case "descending gender":
+                    records = records.OrderByDescending(x => x.Tipe_Barang);
+                    break;
+
+                case "Gender":
+                    records = records.OrderBy(x => x.Tipe_Barang);
+                    break;
+
+                default:
+                    records = records.OrderBy(x => x.Nama_Barang);
+                    break;
+
+            }
+            return View(records.ToPagedList(pageNumber ?? 1, 3));
         }
 
         public ActionResult PartialViewDetailItem(int ID)
