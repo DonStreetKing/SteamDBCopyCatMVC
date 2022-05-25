@@ -26,7 +26,7 @@
             <a href="~/Home/HomeScreen" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="~/Home/ListAllItem2" class="nav-link">Tabel</a>
+            <a href="~/Home/ListAllItem" class="nav-link">Tabel</a>
         </li>
     </ul>
 
@@ -168,7 +168,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
-                    <a href="~/Views/Home/HomeScreen.cshtml" class="nav-link active">
+                    <a href="~/Home/HomeScreen" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -176,7 +176,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="~/Views/Home/ListAllItem.cshtml" class="nav-link">
+                    <a href="~/Home/ListAllItem" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Tables
@@ -190,7 +190,6 @@
     <!-- /.sidebar -->
 </aside>
 <body style="width: 100%;" runat="server" class="dark-mode sidebar-mini layout-footer-fixed sidebar-closed sidebar-collapse layout-fixed layout-navbar-fixed">
-    >
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -128,6 +128,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterAkun.cs" />
+    <Compile Include="Controllers\TambahKeWishlistController.cs" />
     <Compile Include="EDMX\Akun.cs">
       <DependentUpon>Databases.tt</DependentUpon>
     </Compile>
@@ -162,6 +163,7 @@
     <Compile Include="Models\Barang.cs" />
     <Compile Include="Models\BarangDB.cs" />
     <Compile Include="Models\Model4Chart.cs" />
+    <Compile Include="Models\ModelUntukWishlistKeknya.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BarangRepository.cs" />
     <Compile Include="Repository\GRep.cs" />
@@ -221,7 +223,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\ListAllItem.cshtml" />
+    <Content Include="Views\Home\ListAllItem_OLD.cshtml" />
     <Content Include="Views\Home\HomeScreen.cshtml" />
     <Content Include="Views\Home\ListView.cshtml" />
     <Content Include="Views\Home\PartialViewDetailItem.cshtml" />
@@ -229,7 +231,8 @@
     <Content Include="Views\Account\RegisterAkun.cshtml" />
     <Content Include="Views\Account\LoginMang.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Home\ListAllItem2.cshtml" />
+    <Content Include="Views\Home\ListAllItem.cshtml" />
+    <Content Include="Views\TambahKeWishlist\WishList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

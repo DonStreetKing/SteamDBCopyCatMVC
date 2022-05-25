@@ -38,11 +38,11 @@ namespace SteamDBCopyCatMVC.Controllers
             return View();
         }
 
-        public ActionResult ListAllItem()
+        public ActionResult ListAllItem_OLD()
         {
             return View();
         }
-        public ActionResult ListAllItem2(string option, string search, int? pageNumber, string sort)
+        public ActionResult ListAllItem(string option, string search, int? pageNumber, string sort)
         {
             //if the sort parameter is null or empty then we are initializing the value as descending name  
             ViewBag.SortByName = string.IsNullOrEmpty(sort) ? "descending Nama_Barang" : "";

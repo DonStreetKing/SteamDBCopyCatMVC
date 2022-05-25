@@ -1,127 +1,72 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-@model IEnumerable<SteamDBCopyCatMVC.EDMX.TabelBarang>
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Cari Barang yang kamu mau</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">DataTables</li>
-                    </ol>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="container">
-                                <h2>Employees Record</h2>
-                                <div class="form-group">
-                                    <label for="Name">Name</label>
-                                    <input type="text" class="form-control" id="CariNama" placeholder="Cari Barang.." onkeyup="Cari()" />
-                                </div>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Employee</button>
-                                    <table class="table table-bordered table-hover" id="myTable">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:20%">
-                                                    Images
-                                                </th>
-                                                <th>
-                                                    Nama Barang
-                                                </th>
-                                                <th>
-                                                    Tipe Barang
-                                                </th>
-                                                <th>
-                                                    Ukuran
-                                                </th>
-                                                <th>
-                                                    Harga
-                                                </th>
-                                                <th>
-                                                    Halal?
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="tabelallitem">
-                                        </tbody>
-                                    </table>
-                                </div>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-            </div>
-        </div>
-        <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-<!-- ./wrapper -->
-<!-- jQuery -->
-<script src="/Plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/Plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="/Plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="/Plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="/Plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="/Plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="/Plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="/Plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="/Plugins/jszip/jszip.min.js"></script>
-<script src="/Plugins/pdfmake/pdfmake.min.js"></script>
-<script src="/Plugins/pdfmake/vfs_fonts.js"></script>
-<script src="/Plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="/Plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="/Plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+@using PagedList;
+@using PagedList.Mvc;
 
-<script src="~/Scripts/jquery-3.6.0.js"></script>
-<script src="~/Scripts/SomethingNeeded.js"></script>
-<!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/dist/js/demo.js"></script>
-<!-- Page specific script -->
-<script>
-    $(function () {
-        $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-</script>
+@model IPagedList<SteamDBCopyCatMVC.EDMX.TabelBarang>
+<link href="~/Content/PagedList.css" />
+
+@using (Html.BeginForm("ListAllItem2", "Home", FormMethod.Get))
+{
+
+    <b> Search Option: </b>@Html.RadioButton("option", "Nama_Barang") <text>Nama Barang</text> @Html.RadioButton("option", "Tipe_Barang") <text>Tipe Barang</text>
+    @Html.RadioButton("option", "Ukuran")<text>Ukuran</text> @Html.TextBox("search")
+    <input type="submit"
+           name="submit"
+           value="Search" />
+} <table class="table"
+         border="1">
+    <tr>
+        <th>
+            @Html.ActionLink("Nama_Barang", "ListAllItem2", new
+{
+sort = ViewBag.SortByName,
+option = Request.QueryString["option"],
+search = Request.QueryString["search"]
+})
+        </th>
+        <th>
+            @Html.ActionLink("Tipe_Barang", "Index", new { sort = ViewBag.SortByGender, option = Request.QueryString["option"], search = Request.QueryString["search"] })
+        </th>
+        <th> @Html.DisplayNameFor(model => model.First().Ukuran) </th>
+    </tr>
+
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="3"> Belum ada barangnya</td>
+        </tr>
+    }
+    else
+    {
+
+        foreach (var item in Model)
+        {
+
+  <tr onclick="location.href = '@(Url.Action("DetailViewItem", "Home", new { ID = item.ID }))'">
+      <td> <img style="width:20%" src="@item.Images" /></td>
+      <td>@Html.DisplayFor(modelItem => item.Nama_Barang)</td>
+      <td>@Html.DisplayFor(modelItem => item.Tipe_Barang)</td>
+      <td>@Html.DisplayFor(modelItem => item.Ukuran)</td>
+      @if (item.Halal == true)
+      {
+          <td>Yes</td>
+      }
+      else
+      {
+          <td>Haram tolo</td>
+      }
+  </tr>
+        }
+    }
+</table>
+
+@Html.PagedListPager(Model, pageNumber => Url.Action("ListAllItem2", new
+{
+pageNumber,
+option = Request.QueryString["option"],
+search = Request.QueryString["search"],
+sort = Request.QueryString["sort"]
+}))
