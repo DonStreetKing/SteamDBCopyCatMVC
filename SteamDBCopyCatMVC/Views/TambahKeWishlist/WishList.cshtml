@@ -86,15 +86,11 @@ $(function () {
 
     <table class="table table-hover" width="100%">
         <thead>
-            <img src="~/Templates/Header.jpg" width="100%" height="70px" />
             <tr>
 
-                <th>SlNO</th>
-                <th>Mobile Name</th>
-
-                <th>Image</th>
+                <th>Gambar</th>
+                <th>Nama</th>
                 <th>Price</th>
-
                 <th>Remove</th>
             </tr>
         </thead>
@@ -103,20 +99,12 @@ $(function () {
             @foreach (var x in Model)
             {
                 <tr>
-
-                    <td>@x.ID</td>
+                    <td><img id="img1" src="@x.Images" width="20%"/></td>
                     <td>@x.Nama_Barang</td>
-                    <td>
-
-                        <img id="img1" src="~/Images/@x.Images" height="100" width="75" />
-
-                    </td>
-                    <td>&#8377;@x.Harga</td>
+                    <td>Rp. @x.Harga</td>
 
                     <td>
-
-
-                        <button id="btn_delete" class="label label-primary" data-slno="@x.ID" onclick="location.href='@Url.Action("Remove","AddToCart",x)'">
+                        <button id="btn_delete" class="label label-primary" data-slno="@x.ID" onclick="location.href='@Url.Action("Remove","TambahKeWishlist",x)'">
                             <img src="~/Icons/delete.png" height="30" width="30" />
                         </button>
                     </td>
@@ -137,18 +125,13 @@ $(function () {
                 <td></td>
 
                 <td><b>Total</b></td>
-                <td>
-                    &#8377;  @sum
-                </td>
+                <td>Rp. @sum</td>
             </tr>
 
         </tfoot>
 
     </table>
-    <div id="footer">
-        <img src="~/Templates/Footer.jpg" width="100%" height="60px" />
-    </div>
-
+    
     <button type="button" id="btnPrint" class="btn btn-primary">Print</button>
     <button type="button" class="btn btn-success">Continue Shopping</button>
     <button type="button" class="btn btn-warning">Place Order</button>

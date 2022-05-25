@@ -54,7 +54,7 @@ namespace SteamDBCopyCatMVC.Controllers
             li.RemoveAll(x => x.ID == TB.ID);
             Session["cart"] = li;
             Session["count"] = Convert.ToInt32(Session["count"]) - 1;
-            return RedirectToAction("Myorder", "AddToCart");
+            return RedirectToAction("WishList", "TambahKeWishlist");
             //return View();
         }
     }

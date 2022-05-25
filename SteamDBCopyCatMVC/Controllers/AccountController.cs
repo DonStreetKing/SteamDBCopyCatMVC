@@ -70,7 +70,7 @@ namespace SteamDBCopyCatMVC.Controllers
                 }
 
                 ViewBag.Message = "User Details Saved";
-                return View("RegisterAkun");
+                return View("LoginMang");
             }
             else
             {
