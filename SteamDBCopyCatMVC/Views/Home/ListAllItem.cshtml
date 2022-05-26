@@ -8,7 +8,7 @@
 @model IPagedList<SteamDBCopyCatMVC.EDMX.TabelBarang>
 <link href="~/Content/PagedList.css" />
 
-@using (Html.BeginForm("ListAllItem2", "Home", FormMethod.Get))
+@using (Html.BeginForm("ListAllItem", "Home", FormMethod.Get))
 {
 
     <b> Search Option: </b>@Html.RadioButton("option", "Nama_Barang") <text>Nama Barang</text> @Html.RadioButton("option", "Tipe_Barang") <text>Tipe Barang</text>
@@ -20,7 +20,7 @@
          border="1">
     <tr>
         <th>
-            @Html.ActionLink("Nama_Barang", "ListAllItem2", new
+            @Html.ActionLink("Nama_Barang", "ListAllItem", new
 {
 sort = ViewBag.SortByName,
 option = Request.QueryString["option"],
@@ -63,7 +63,7 @@ search = Request.QueryString["search"]
     }
 </table>
 
-@Html.PagedListPager(Model, pageNumber => Url.Action("ListAllItem2", new
+@Html.PagedListPager(Model, pageNumber => Url.Action("ListAllItem", new
 {
 pageNumber,
 option = Request.QueryString["option"],
