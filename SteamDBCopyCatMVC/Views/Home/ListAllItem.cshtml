@@ -45,7 +45,7 @@ search = Request.QueryString["search"]
         foreach (var item in Model)
         {
 
-  <tr onclick="location.href = '@(Url.Action("DetailViewItem", "Home", new { ID = item.ID }))'">
+  <tr onclick="location.href = '@(Url.Action("DetailViewItem", "Home", new { ID_Barang = item.ID_Barang }))'">
       <td> <img style="width:20%" src="@item.Images" /></td>
       <td>@Html.DisplayFor(modelItem => item.Nama_Barang)</td>
       <td>@Html.DisplayFor(modelItem => item.Tipe_Barang)</td>

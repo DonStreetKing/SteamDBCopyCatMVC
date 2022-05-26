@@ -22,9 +22,9 @@
         </EntityType>
         <EntityType Name="TabelBarang">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_Barang" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Barang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nama_Barang" Type="varchar(max)" />
           <Property Name="Tipe_Barang" Type="varchar(max)" />
           <Property Name="Ukuran" Type="varchar(max)" />
@@ -34,6 +34,57 @@
           <Property Name="Halal" Type="bit" />
           <Property Name="Stok_Barang" Type="int" />
         </EntityType>
+        <EntityType Name="TabelDaftarBarang">
+          <Key>
+            <PropertyRef Name="ID_Barang" />
+          </Key>
+          <Property Name="ID_Barang" Type="int" Nullable="false" />
+          <Property Name="Nama_Barang" Type="varchar(max)" />
+          <Property Name="Tipe_Barang" Type="varchar(max)" />
+          <Property Name="Halal" Type="bit" />
+          <Property Name="Images" Type="image" />
+        </EntityType>
+        <EntityType Name="TabelHarga">
+          <Key>
+            <PropertyRef Name="ID_ListHarga" />
+          </Key>
+          <Property Name="ID_ListHarga" Type="int" Nullable="false" />
+          <Property Name="ID_Toko" Type="int" />
+          <Property Name="ID_NamaBarang" Type="int" />
+          <Property Name="Harga" Type="int" />
+          <Property Name="NamaBarangs" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TabelToko">
+          <Key>
+            <PropertyRef Name="ID_Toko" />
+          </Key>
+          <Property Name="ID_Toko" Type="int" Nullable="false" />
+          <Property Name="Nama_Toko" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_1">
+          <End Role="TabelDaftarBarang" Type="Self.TabelDaftarBarang" Multiplicity="0..1" />
+          <End Role="TabelHarga" Type="Self.TabelHarga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TabelDaftarBarang">
+              <PropertyRef Name="ID_Barang" />
+            </Principal>
+            <Dependent Role="TabelHarga">
+              <PropertyRef Name="ID_NamaBarang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_2">
+          <End Role="TabelToko" Type="Self.TabelToko" Multiplicity="0..1" />
+          <End Role="TabelHarga" Type="Self.TabelHarga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TabelToko">
+              <PropertyRef Name="ID_Toko" />
+            </Principal>
+            <Dependent Role="TabelHarga">
+              <PropertyRef Name="ID_Toko" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="Create_Account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Password" Type="varchar(max)" Mode="In" />
           <Parameter Name="Email" Type="varchar(max)" Mode="In" />
@@ -42,11 +93,23 @@
           <Parameter Name="Email" Type="varchar(max)" Mode="In" />
           <Parameter Name="Password" Type="varchar(max)" Mode="In" />
         </Function>
+        <Function Name="ListHargaBerbagaiToko" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="NewestItemTop5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ShowListBarang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SteamDBCopyCatModelStoreContainer">
           <EntitySet Name="Akun" EntityType="Self.Akun" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TabelBarang" EntityType="Self.TabelBarang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TabelDaftarBarang" EntityType="Self.TabelDaftarBarang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TabelHarga" EntityType="Self.TabelHarga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TabelToko" EntityType="Self.TabelToko" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_1" Association="Self.FK_1">
+            <End Role="TabelDaftarBarang" EntitySet="TabelDaftarBarang" />
+            <End Role="TabelHarga" EntitySet="TabelHarga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_2" Association="Self.FK_2">
+            <End Role="TabelToko" EntitySet="TabelToko" />
+            <End Role="TabelHarga" EntitySet="TabelHarga" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -54,9 +117,8 @@
       <Schema Namespace="SteamDBCopyCatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="TabelBarang">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_Barang" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nama_Barang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Tipe_Barang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Ukuran" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -65,6 +127,7 @@
           <Property Name="Tanggal_Muncul" Type="DateTime" Precision="0" />
           <Property Name="Halal" Type="Boolean" />
           <Property Name="Stok_Barang" Type="Int32" />
+          <Property Name="ID_Barang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityContainer Name="SteamDBCopyCatEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TabelBarangs" EntityType="Self.TabelBarang" />
@@ -79,6 +142,18 @@
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="TabelDaftarBarangs" EntityType="SteamDBCopyCatModel.TabelDaftarBarang" />
+          <EntitySet Name="TabelHargas" EntityType="SteamDBCopyCatModel.TabelHarga" />
+          <EntitySet Name="TabelTokoes" EntityType="SteamDBCopyCatModel.TabelToko" />
+          <AssociationSet Name="FK_1" Association="SteamDBCopyCatModel.FK_1">
+            <End Role="TabelDaftarBarang" EntitySet="TabelDaftarBarangs" />
+            <End Role="TabelHarga" EntitySet="TabelHargas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_2" Association="SteamDBCopyCatModel.FK_2">
+            <End Role="TabelToko" EntitySet="TabelTokoes" />
+            <End Role="TabelHarga" EntitySet="TabelHargas" />
+          </AssociationSet>
+          <FunctionImport Name="ListHargaBerbagaiToko" ReturnType="Collection(SteamDBCopyCatModel.ListHargaBerbagaiToko_Result)" />
         </EntityContainer>
         <ComplexType Name="NewestItemTop5_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -115,6 +190,66 @@
           <Property Name="LastAccessDate" Type="DateTime" Precision="3" />
           <Property Name="AccountLocked" Type="Boolean" />
         </EntityType>
+        <EntityType Name="TabelDaftarBarang">
+          <Key>
+            <PropertyRef Name="ID_Barang" />
+          </Key>
+          <Property Name="ID_Barang" Type="Int32" Nullable="false" />
+          <Property Name="Nama_Barang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tipe_Barang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Halal" Type="Boolean" />
+          <Property Name="Images" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TabelHargas" Relationship="SteamDBCopyCatModel.FK_1" FromRole="TabelDaftarBarang" ToRole="TabelHarga" />
+        </EntityType>
+        <EntityType Name="TabelHarga">
+          <Key>
+            <PropertyRef Name="ID_ListHarga" />
+          </Key>
+          <Property Name="ID_ListHarga" Type="Int32" Nullable="false" />
+          <Property Name="ID_Toko" Type="Int32" />
+          <Property Name="ID_NamaBarang" Type="Int32" />
+          <Property Name="Harga" Type="Int32" />
+          <NavigationProperty Name="TabelDaftarBarang" Relationship="SteamDBCopyCatModel.FK_1" FromRole="TabelHarga" ToRole="TabelDaftarBarang" />
+          <NavigationProperty Name="TabelToko" Relationship="SteamDBCopyCatModel.FK_2" FromRole="TabelHarga" ToRole="TabelToko" />
+          <Property Name="NamaBarangs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TabelToko">
+          <Key>
+            <PropertyRef Name="ID_Toko" />
+          </Key>
+          <Property Name="ID_Toko" Type="Int32" Nullable="false" />
+          <Property Name="Nama_Toko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TabelHargas" Relationship="SteamDBCopyCatModel.FK_2" FromRole="TabelToko" ToRole="TabelHarga" />
+        </EntityType>
+        <Association Name="FK_1">
+          <End Type="SteamDBCopyCatModel.TabelDaftarBarang" Role="TabelDaftarBarang" Multiplicity="0..1" />
+          <End Type="SteamDBCopyCatModel.TabelHarga" Role="TabelHarga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TabelDaftarBarang">
+              <PropertyRef Name="ID_Barang" />
+            </Principal>
+            <Dependent Role="TabelHarga">
+              <PropertyRef Name="ID_NamaBarang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_2">
+          <End Type="SteamDBCopyCatModel.TabelToko" Role="TabelToko" Multiplicity="0..1" />
+          <End Type="SteamDBCopyCatModel.TabelHarga" Role="TabelHarga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TabelToko">
+              <PropertyRef Name="ID_Toko" />
+            </Principal>
+            <Dependent Role="TabelHarga">
+              <PropertyRef Name="ID_Toko" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="ListHargaBerbagaiToko_Result">
+          <Property Type="String" Name="Nama_Barang" Nullable="true" />
+          <Property Type="String" Name="Nama_Toko" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Harga" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -124,8 +259,8 @@
           <EntitySetMapping Name="TabelBarangs">
             <EntityTypeMapping TypeName="SteamDBCopyCatModel.TabelBarang">
               <MappingFragment StoreEntitySet="TabelBarang">
+                <ScalarProperty Name="ID_Barang" ColumnName="ID_Barang" />
                 <ScalarProperty Name="Stok_Barang" ColumnName="Stok_Barang" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nama_Barang" ColumnName="Nama_Barang" />
                 <ScalarProperty Name="Tipe_Barang" ColumnName="Tipe_Barang" />
                 <ScalarProperty Name="Ukuran" ColumnName="Ukuran" />
@@ -182,6 +317,45 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetLoginInfo" FunctionName="SteamDBCopyCatModel.Store.GetLoginInfo" />
+          <EntitySetMapping Name="TabelDaftarBarangs">
+            <EntityTypeMapping TypeName="SteamDBCopyCatModel.TabelDaftarBarang">
+              <MappingFragment StoreEntitySet="TabelDaftarBarang">
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Halal" ColumnName="Halal" />
+                <ScalarProperty Name="Tipe_Barang" ColumnName="Tipe_Barang" />
+                <ScalarProperty Name="Nama_Barang" ColumnName="Nama_Barang" />
+                <ScalarProperty Name="ID_Barang" ColumnName="ID_Barang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TabelHargas">
+            <EntityTypeMapping TypeName="SteamDBCopyCatModel.TabelHarga">
+              <MappingFragment StoreEntitySet="TabelHarga">
+                <ScalarProperty Name="NamaBarangs" ColumnName="NamaBarangs" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="ID_NamaBarang" ColumnName="ID_NamaBarang" />
+                <ScalarProperty Name="ID_Toko" ColumnName="ID_Toko" />
+                <ScalarProperty Name="ID_ListHarga" ColumnName="ID_ListHarga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TabelTokoes">
+            <EntityTypeMapping TypeName="SteamDBCopyCatModel.TabelToko">
+              <MappingFragment StoreEntitySet="TabelToko">
+                <ScalarProperty Name="Nama_Toko" ColumnName="Nama_Toko" />
+                <ScalarProperty Name="ID_Toko" ColumnName="ID_Toko" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ListHargaBerbagaiToko" FunctionName="SteamDBCopyCatModel.Store.ListHargaBerbagaiToko">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SteamDBCopyCatModel.ListHargaBerbagaiToko_Result">
+                <ScalarProperty Name="Nama_Barang" ColumnName="Nama_Barang" />
+                <ScalarProperty Name="Nama_Toko" ColumnName="Nama_Toko" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

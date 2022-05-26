@@ -29,6 +29,9 @@ namespace SteamDBCopyCatMVC.EDMX
     
         public virtual DbSet<TabelBarang> TabelBarangs { get; set; }
         public virtual DbSet<Akun> Akuns { get; set; }
+        public virtual DbSet<TabelDaftarBarang> TabelDaftarBarangs { get; set; }
+        public virtual DbSet<TabelHarga> TabelHargas { get; set; }
+        public virtual DbSet<TabelToko> TabelTokoes { get; set; }
     
         public virtual ObjectResult<NewestItemTop5_Result> NewestItemTop5()
         {
@@ -64,6 +67,11 @@ namespace SteamDBCopyCatMVC.EDMX
                 new ObjectParameter("Password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetLoginInfo", emailParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<ListHargaBerbagaiToko_Result> ListHargaBerbagaiToko()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListHargaBerbagaiToko_Result>("ListHargaBerbagaiToko");
         }
     }
 }

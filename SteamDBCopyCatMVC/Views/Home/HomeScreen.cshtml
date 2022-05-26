@@ -334,7 +334,7 @@
                                         <tbody>
                                             @foreach (SteamDBCopyCatMVC.EDMX.TabelBarang tabelbarang in Model)
                                             {
-                                                <tr onclick="location.href = '@(Url.Action("DetailViewItem", "Home", new { ID = tabelbarang.ID }))'">
+                                                <tr onclick="location.href = '@(Url.Action("DetailViewItem", "Home", new { ID_Barang = tabelbarang.ID_Barang }))'">
                                                     <td> <img style="width:20%" src="@tabelbarang.Images" /></td>
                                                     <td>@tabelbarang.Nama_Barang</td>
                                                     <td>@tabelbarang.Tipe_Barang</td>
@@ -508,7 +508,7 @@
                                                             <img src="@tabelbarang.Images" alt="Product Image" />
                                                         </div>
                                                         <div class="product-info">
-                                                            <asp:Label ID="labelname1" class="product-title" runat="server">@Html.ActionLink(@tabelbarang.Nama_Barang, "DetailViewItem", new { ID = tabelbarang.ID })</asp:Label>
+                                                            <asp:Label ID="labelname1" class="product-title" runat="server">@Html.ActionLink(@tabelbarang.Nama_Barang, "DetailViewItem", new { ID_Barang = tabelbarang.ID_Barang })</asp:Label>
                                                             <span class="badge badge-danger float-right">Rp. @tabelbarang.Harga</span>
                                                             <span class="product-description">@tabelbarang.Tipe_Barang</span>
                                                         </div>

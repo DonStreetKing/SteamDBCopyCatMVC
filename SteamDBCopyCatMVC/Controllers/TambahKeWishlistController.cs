@@ -51,7 +51,7 @@ namespace SteamDBCopyCatMVC.Controllers
         public ActionResult Remove(TabelBarang TB)
         {
             List<TabelBarang> li = (List<TabelBarang>)Session["cart"];
-            li.RemoveAll(x => x.ID == TB.ID);
+            li.RemoveAll(x => x.ID_Barang == TB.ID_Barang);
             Session["cart"] = li;
             Session["count"] = Convert.ToInt32(Session["count"]) - 1;
             return RedirectToAction("WishList", "TambahKeWishlist");

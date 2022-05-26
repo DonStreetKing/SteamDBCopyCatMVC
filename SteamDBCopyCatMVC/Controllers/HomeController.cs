@@ -88,17 +88,17 @@ namespace SteamDBCopyCatMVC.Controllers
             return View(records.ToPagedList(pageNumber ?? 1, 3));
         }
 
-        public ActionResult PartialViewDetailItem(int ID)
+        public ActionResult PartialViewDetailItem(int ID_Barang)
         {
             BarangDB barangDBs = new BarangDB();
-            return View(_unitOfWork.GetRepositoryInstance<TabelBarang>().GetFirstorDefault(ID));
+            return View(_unitOfWork.GetRepositoryInstance<TabelBarang>().GetFirstorDefault(ID_Barang));
         }
 
         public ActionResult ListView()
         {
             return View();
         }
-        public ActionResult DetailViewItem(int ID)
+        public ActionResult DetailViewItem(int ID_Barang)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace SteamDBCopyCatMVC.Controllers
             {
                 return View("Error");
             }
-            return View(_unitOfWork.GetRepositoryInstance<TabelBarang>().GetFirstorDefault(ID));
+            return View(_unitOfWork.GetRepositoryInstance<TabelBarang>().GetFirstorDefault(ID_Barang));
         }
 
         JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };

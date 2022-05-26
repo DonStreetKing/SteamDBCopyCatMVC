@@ -4,9 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e2b78384edcf4e289c9ab22ce5cf16c1" Name="Diagram1" ZoomLevel="108">
+      <Diagram DiagramId="e2b78384edcf4e289c9ab22ce5cf16c1" Name="Diagram1" ZoomLevel="103">
         <EntityTypeShape EntityType="SteamDBCopyCatModel.TabelBarang" Width="1.875" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SteamDBCopyCatModel.Akun" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SteamDBCopyCatModel.TabelDaftarBarang" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="SteamDBCopyCatModel.TabelHarga" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="SteamDBCopyCatModel.TabelToko" Width="1.5" PointX="0.75" PointY="5.25" />
+        <AssociationConnector Association="SteamDBCopyCatModel.FK_1" />
+        <AssociationConnector Association="SteamDBCopyCatModel.FK_2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

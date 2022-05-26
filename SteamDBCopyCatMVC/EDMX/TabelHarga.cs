@@ -12,16 +12,15 @@ namespace SteamDBCopyCatMVC.EDMX
     using System;
     using System.Collections.Generic;
     
-    public partial class TabelBarang
+    public partial class TabelHarga
     {
-        public string Nama_Barang { get; set; }
-        public string Tipe_Barang { get; set; }
-        public string Ukuran { get; set; }
+        public int ID_ListHarga { get; set; }
+        public Nullable<int> ID_Toko { get; set; }
+        public Nullable<int> ID_NamaBarang { get; set; }
         public Nullable<int> Harga { get; set; }
-        public string Images { get; set; }
-        public Nullable<System.DateTime> Tanggal_Muncul { get; set; }
-        public Nullable<bool> Halal { get; set; }
-        public Nullable<int> Stok_Barang { get; set; }
-        public int ID_Barang { get; set; }
+        public string NamaBarangs { get; set; }
+    
+        public virtual TabelDaftarBarang TabelDaftarBarang { get; set; }
+        public virtual TabelToko TabelToko { get; set; }
     }
 }

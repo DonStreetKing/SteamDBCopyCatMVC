@@ -126,8 +126,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddItemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterAkun.cs" />
+    <Compile Include="Controllers\TabelBarangAccessLayerController.cs" />
     <Compile Include="Controllers\TambahKeWishlistController.cs" />
     <Compile Include="EDMX\Akun.cs">
       <DependentUpon>Databases.tt</DependentUpon>
@@ -147,6 +149,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Databases.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EDMX\ListHargaBerbagaiToko_Result.cs">
+      <DependentUpon>Databases.tt</DependentUpon>
+    </Compile>
     <Compile Include="EDMX\NewestItemTop5_Result.cs">
       <DependentUpon>Databases.tt</DependentUpon>
     </Compile>
@@ -154,6 +159,15 @@
       <DependentUpon>Databases.tt</DependentUpon>
     </Compile>
     <Compile Include="EDMX\TabelBarang.cs">
+      <DependentUpon>Databases.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\TabelDaftarBarang.cs">
+      <DependentUpon>Databases.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\TabelHarga.cs">
+      <DependentUpon>Databases.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\TabelToko.cs">
       <DependentUpon>Databases.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -2292,6 +2306,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AddItem\" />
+    <Folder Include="Views\TabelBarangAccessLayer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

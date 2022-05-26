@@ -12,16 +12,21 @@ namespace SteamDBCopyCatMVC.EDMX
     using System;
     using System.Collections.Generic;
     
-    public partial class TabelBarang
+    public partial class TabelDaftarBarang
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TabelDaftarBarang()
+        {
+            this.TabelHargas = new HashSet<TabelHarga>();
+        }
+    
+        public int ID_Barang { get; set; }
         public string Nama_Barang { get; set; }
         public string Tipe_Barang { get; set; }
-        public string Ukuran { get; set; }
-        public Nullable<int> Harga { get; set; }
-        public string Images { get; set; }
-        public Nullable<System.DateTime> Tanggal_Muncul { get; set; }
         public Nullable<bool> Halal { get; set; }
-        public Nullable<int> Stok_Barang { get; set; }
-        public int ID_Barang { get; set; }
+        public byte[] Images { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TabelHarga> TabelHargas { get; set; }
     }
 }
