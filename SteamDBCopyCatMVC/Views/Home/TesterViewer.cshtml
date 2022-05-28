@@ -1,0 +1,40 @@
+﻿@using SteamDBCopyCatMVC.EDMX
+@model dynamic
+
+@{
+    ViewBag.Title = "TesterViewer";
+}
+
+<h2>TesterViewer</h2>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Name</th>
+    </tr>
+    @foreach (TabelDaftarBarang tabelDaftarBarang in Model.TabelDaftarBarang)
+    {
+        <tr>
+            <td>@tabelDaftarBarang.Nama_Barang</td>
+            <td>@tabelDaftarBarang.Tipe_Barang</td>
+            <td>@tabelDaftarBarang.Halal</td>
+        </tr>
+    }
+</table>
+
+<p><b>Student List</b></p>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Name</th>
+    </tr>
+        <tr>
+            <td>@Html.Display(SteamDBCopyCatMVC.EDMX.TabelHarga.ID_NamaBarang</td>
+            <td>@tabelHarga.ID_Toko</td>
+            <td>@tabelHarga.Harga</td>
+        </tr>
+</table>
+

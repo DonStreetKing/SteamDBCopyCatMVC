@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ using SteamDBCopyCatMVC.EDMX;
 using SteamDBCopyCatMVC.Models;
 using SteamDBCopyCatMVC.Repository;
 using PagedList;
+using System.Dynamic;
 
 namespace SteamDBCopyCatMVC.Controllers
 {
@@ -100,6 +102,9 @@ namespace SteamDBCopyCatMVC.Controllers
         }
         public ActionResult DetailViewItem(int ID_Barang)
         {
+            /*MultiModel model = new MultiModel();*/
+            
+
             try
             {
                 ViewBag.DataPoints = JsonConvert.SerializeObject(dBCopyCatEntities.TabelBarangs.ToList(), _jsonSetting);
@@ -112,10 +117,77 @@ namespace SteamDBCopyCatMVC.Controllers
             {
                 return View("Error");
             }
-            return View(_unitOfWork.GetRepositoryInstance<TabelBarang>().GetFirstorDefault(ID_Barang));
+            return View(_unitOfWork.GetRepositoryInstance<TabelDaftarBarang>().GetFirstorDefault(ID_Barang));
+
+           
+
         }
 
         JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
         // https://canvasjs.com/asp-net-mvc-charts/area-chart/
+
+        public ActionResult TesterViewer()
+        {
+            dynamic model = new ExpandoObject();
+            model.TabelDaftarBarang = GetTabelDaftarBarang();
+            model.TabelHarga = GetTabelHarga();
+            return View(model);
+        }
+        private static List<TabelHarga> GetTabelHarga()
+        {
+            List<TabelHarga> tabelHargas = new List<TabelHarga>();
+            string query = "Select * From TabelHarga";
+            string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            tabelHargas.Add(new TabelHarga
+                            {
+                                ID_Toko = Convert.ToInt32(sdr["ID_Toko"]),
+                                ID_NamaBarang = Convert.ToInt32(sdr["ID_NamaBarang"]),
+                                Harga = Convert.ToInt32(sdr["Harga"])
+                            });
+                        }
+                        con.Close();
+                        return tabelHargas;
+                    }
+                }
+            }
+        }
+        private static List<TabelDaftarBarang> GetTabelDaftarBarang()
+        {
+            List<TabelDaftarBarang> tabelDaftarBarangs = new List<TabelDaftarBarang>();
+            string query = "Select * From TabelDaftarBarang";
+            string constr = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            tabelDaftarBarangs.Add(new TabelDaftarBarang
+                            {
+                                ID_Barang = Convert.ToInt32(sdr["ID_Barang"]),
+                                Nama_Barang = sdr["Nama_Barang"].ToString(),
+                                Tipe_Barang = sdr["Tipe_Barang"].ToString()
+                            });
+                        }
+                        con.Close();
+                        return tabelDaftarBarangs;
+                    }
+                }
+            }
+        }
     }
 }

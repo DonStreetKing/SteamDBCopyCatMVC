@@ -31,7 +31,7 @@ namespace SteamDBCopyCatMVC.Models
                 {
                     barang.Add(new Barang
                     {
-                        ID = Convert.ToInt32(rdr["ID"]),
+                        ID_Barang = Convert.ToInt32(rdr["ID_Barang"]),
                         Nama_Barang = rdr["Nama_Barang"].ToString(),
                         Tipe_Barang = rdr["Tipe_Barang"].ToString(),
                         Ukuran = rdr["Ukuran"].ToString(),
@@ -63,7 +63,7 @@ namespace SteamDBCopyCatMVC.Models
                 new Barang
                 {
 
-                    ID = Convert.ToInt32(dr["ID"]),
+                    ID_Barang = Convert.ToInt32(dr["ID_Barang"]),
                     Nama_Barang = Convert.ToString(dr["Nama_Barang"]),
                     Tipe_Barang = Convert.ToString(dr["Tipe_Barang"]),
                     Ukuran = Convert.ToString(dr["Ukuran"]),
